@@ -10,7 +10,7 @@ UtPod::UtPod() {
 
     unsigned int currentTime = (unsigned) time(0);
     srand(currentTime);  //seed the random number generator
-    }
+    
 
 }
 //Constructor with size parameter
@@ -108,7 +108,8 @@ void UtPod::shuffle(){
             p1=p1->next;
             roll-=1;
         }
-        swap(p1, p2);
+        swap(p1->s, p2->s);
+	}
 }
 
 
