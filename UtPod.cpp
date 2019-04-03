@@ -10,8 +10,6 @@ UtPod::UtPod() {
 
     unsigned int currentTime = (unsigned) time(0);
     srand(currentTime);  //seed the random number generator
-    
-
 }
 //Constructor with size parameter
 //The user of the class will pass in a size.
@@ -23,6 +21,9 @@ UtPod::UtPod(int size){
         podMemSize = MAX_MEMORY;
     else
         podMemSize = size;
+
+    unsigned int currentTime = (unsigned) time(0);
+    srand(currentTime);  //seed the random number generator
 }
 
 /* FUNCTION - int addSong
@@ -72,7 +73,7 @@ int UtPod::removeSong(Song const &s){
     SongNode* p = songs;
     SongNode* prev = NULL;
 
-    while((p != NULL) && (p->s != s)){ //?
+    while((p->next != NULL) && (p->s != s)){
         prev = p;
         p = p->next;
     }
@@ -103,7 +104,8 @@ void UtPod::shuffle(){
     for (int i = 0; i < numSongs(); i++) {
         SongNode *p1 = songs;
         SongNode *p2 = songs;
-        int roll = (rand() % numSongs());
+        int mod = numSongs();
+        int roll = (rand() % mod);
         while (roll > 0){
             p1=p1->next;
             roll-=1;
